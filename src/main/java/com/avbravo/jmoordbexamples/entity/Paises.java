@@ -5,6 +5,7 @@
  */
 package com.avbravo.jmoordbexamples.entity;
 
+import com.avbravo.jmoordb.anotations.Embedded;
 import com.avbravo.jmoordb.anotations.Entity;
 import com.avbravo.jmoordb.anotations.Id;
 import java.util.Date;
@@ -23,6 +24,8 @@ public class Paises {
     private String siglas;
     private String pais;
     private Date fecha;
+    @Embedded
+     private Continentes continentes;
 
 //    public String getSiglas() {
 //        return siglas;

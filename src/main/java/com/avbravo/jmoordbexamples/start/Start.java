@@ -5,8 +5,9 @@
  */
 package com.avbravo.jmoordbexamples.start;
 
-import com.avbravo.jmoordbexamples.ejb.PaisesFacade;
+import com.avbravo.jmoordbexamples.ejb.ProvinciasFacade;
 import com.avbravo.jmoordbexamples.entity.Paises;
+import com.avbravo.jmoordbexamples.entity.Provincias;
 import java.util.Date;
 
 /**
@@ -20,21 +21,29 @@ public class Start {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        try {
-            PaisesFacade paisesFacade = new PaisesFacade();
+        try{
             Paises paises = new Paises();
-            paises.setSiglas("al");
-            paises.setPais("Alemania");
+            paises.setContinentes(null);
             paises.setFecha(new Date());
-             if(paisesFacade.save(paises)){
-                System.out.println("guardado");
-            }else{
-                System.out.println("no se guardo");
-            }
-       
-             System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
-        } catch (Exception e) {
-            System.out.println("main() Error() "+e.getLocalizedMessage());
+            paises.setPais("Panama");
+            paises.setSiglas("pa");
+            
+            ProvinciasFacade pf = new ProvinciasFacade();
+            Provincias p = new Provincias();
+            p.setIdprovincia(6);
+            p.setPaises(paises);
+            p.setProvincia("Herrera");
+            pf.save(p);
+            System.out.println("---Guardado");
+            
+            
+            
+//            TestJMongo testJMongo = new TestJMongo();
+//            testJMongo.ejecutar();
+//            TestJmoordb testJmoordb = new TestJmoordb();
+//            testJmoordb.ejecutar();
+        }catch(Exception ex){
+            System.out.println("main() "+ex.getLocalizedMessage());
         }
         
     }
