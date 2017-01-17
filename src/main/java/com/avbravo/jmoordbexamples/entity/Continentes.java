@@ -25,5 +25,7 @@ public class Continentes {
     private String continente;
     @Referenced(documment = "Planetas",field = "idplaneta")
     private List<Planetas> planetas;
+    
+       private List<String> gente;
 
 }
