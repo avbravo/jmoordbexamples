@@ -6,6 +6,7 @@
 package com.avbravo.jmoordbexamples.entity;
 
 import com.avbravo.jmoordb.anotations.Id;
+import com.avbravo.jmoordb.anotations.Ignore;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,8 +22,17 @@ public class Planetas {
 @Id
     private String idplaneta;
     private String planeta;
-   // @Ignore
+@Ignore    
     private Date fecha;
+
+    public Planetas() {
+    }
+
+    public Planetas(String idplaneta, String planeta, Date fecha) {
+        this.idplaneta = idplaneta;
+        this.planeta = planeta;
+        this.fecha = fecha;
+    }
 
     
     

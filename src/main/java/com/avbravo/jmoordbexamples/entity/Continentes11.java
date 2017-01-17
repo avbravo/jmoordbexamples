@@ -7,7 +7,6 @@ package com.avbravo.jmoordbexamples.entity;
 
 import com.avbravo.jmoordb.anotations.Embedded;
 import com.avbravo.jmoordb.anotations.Id;
-import com.avbravo.jmoordb.anotations.Referenced;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,12 +17,14 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Continentes {
+public class Continentes11 {
 
     @Id
     private String idcontinente;
     private String continente;
-    @Referenced(documment = "Planetas",field = "idplaneta")
+    @Embedded
     private List<Planetas> planetas;
+
+    private List<String> gente;
 
 }

@@ -11,7 +11,9 @@ import com.avbravo.jmoordbexamples.ejb.PlanetasFacade;
 import com.avbravo.jmoordbexamples.entity.Continentes;
 import com.avbravo.jmoordbexamples.entity.Paises;
 import com.avbravo.jmoordbexamples.entity.Planetas;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -53,7 +55,7 @@ public class TestJmoordb {
                 System.out.println("no se guardo");
             }
 
-            System.out.println("--->toString() " + paisesFacade.getDocument(paises).toString());
+           // System.out.println("--->toString() " + paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
             System.out.println("main() Error() " + e.getLocalizedMessage());
         }
@@ -85,11 +87,27 @@ public class TestJmoordb {
     private Boolean saveContinentes() {
         try {
 
-            continentes.setIdcontinente("eu");
-            continentes.setContinente("Europa");
-            continentes.setPlanetas(planetas);
+            continentes.setIdcontinente("am");
+            continentes.setContinente("America");
+            
+            Planetas p1 = new Planetas("tr", "Tierra",   new Date());
+            Planetas p2 = new Planetas("mr", "Marte",   new Date());
+            Planetas p3= new Planetas("jp", "Jupiter",   new Date());
+            List<Planetas> l = new ArrayList<>();
+            l.add(p1);
+            l.add(p2);
+            l.add(p3);
+            
+            
+            List<String> l1 = new ArrayList<>();
+            l1.add("Uno");
+            l1.add("Dos");
+            l1.add("Tres");
+//          continentes.setGente(l1);
+//            continentes.setPlanetas(p1);
+            continentes.setPlanetas(l);
             if (continentesFacade.save(continentes)) {
-                System.out.println("########################################");
+              
                 System.out.println("guardado continente");
                 System.out.println("########################################");
             } else {
