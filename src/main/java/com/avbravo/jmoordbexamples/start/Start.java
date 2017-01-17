@@ -22,26 +22,26 @@ public class Start {
     public static void main(String[] args) {
         // TODO code application logic here
         try{
-            Paises paises = new Paises();
-            paises.setContinentes(null);
-            paises.setFecha(new Date());
-            paises.setPais("Panama");
-            paises.setSiglas("pa");
-            
-            ProvinciasFacade pf = new ProvinciasFacade();
-            Provincias p = new Provincias();
-            p.setIdprovincia(6);
-            p.setPaises(paises);
-            p.setProvincia("Herrera");
-            pf.save(p);
-            System.out.println("---Guardado");
+//            Paises paises = new Paises();
+//            paises.setContinentes(null);
+//            paises.setFecha(new Date());
+//            paises.setPais("Panama");
+//            paises.setSiglas("pa");
+//            
+//            ProvinciasFacade pf = new ProvinciasFacade();
+//            Provincias p = new Provincias();
+//            p.setIdprovincia(6);
+//            p.setPaises(paises);
+//            p.setProvincia("Herrera");
+//            pf.save(p);
+//            System.out.println("---Guardado");
             
             
             
 //            TestJMongo testJMongo = new TestJMongo();
 //            testJMongo.ejecutar();
-//            TestJmoordb testJmoordb = new TestJmoordb();
-//            testJmoordb.ejecutar();
+            TestJmoordb testJmoordb = new TestJmoordb();
+            testJmoordb.ejecutar();
         }catch(Exception ex){
             System.out.println("main() "+ex.getLocalizedMessage());
         }

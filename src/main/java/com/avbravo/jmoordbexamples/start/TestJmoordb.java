@@ -67,13 +67,13 @@ public class TestJmoordb {
             planetas.setIdplaneta("tierra");
             planetas.setPlaneta("Tierra");
             planetas.setFecha(new Date());
-            if (planetasFacade.save(planetas)) {
-                System.out.println("########################################");
-                System.out.println("guardado planeta");
-                System.out.println("########################################");
-            } else {
-                System.out.println("no se guardo");
-            }
+//            if (planetasFacade.save(planetas)) {
+//                System.out.println("########################################");
+//                System.out.println("guardado planeta");
+//                System.out.println("########################################");
+//            } else {
+//                System.out.println("no se guardo");
+//            }
 
             //   System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
