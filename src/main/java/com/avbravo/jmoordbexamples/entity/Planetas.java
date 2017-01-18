@@ -22,7 +22,7 @@ public class Planetas {
 @Id
     private String idplaneta;
     private String planeta;
-//@Ignore    
+   //@Ignore    
     private Date fecha;
 
     public Planetas() {

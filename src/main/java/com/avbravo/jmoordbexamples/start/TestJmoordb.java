@@ -24,6 +24,7 @@ public class TestJmoordb {
     ContinentesFacade continentesFacade = new ContinentesFacade();
     PlanetasFacade planetasFacade = new PlanetasFacade();
     PaisesFacade paisesFacade = new PaisesFacade();
+    
 
     Continentes continentes = new Continentes();
     Planetas planetas = new Planetas();
@@ -31,10 +32,10 @@ public class TestJmoordb {
 
     public void ejecutar() {
         try {
-         // savePlanetas();
+      // savePlanetas();
            // saveContinentes();
             //   savePaises();
-            saveContinentes();
+    //   saveContinentes();
 buscarContinentes();
         
 //           buscarPaises();
@@ -55,7 +56,7 @@ buscarContinentes();
             
     }
     private void buscarContinentes(){
-         Continentes c = continentesFacade.find("idcontinente", "am");
+         Continentes c = continentesFacade.find("idcontinente", "eu");
             if(c == null){
                 System.out.println("No hay un continente con ese codigo");
             }else
@@ -88,10 +89,8 @@ buscarContinentes();
     private Planetas savePlanetas() {
 
         try {
+planetas = new Planetas("saturno", "Saturno",new Date());
 
-            planetas.setIdplaneta("marte");
-            planetas.setPlaneta("Marte");
-            planetas.setFecha(new Date());
             if (planetasFacade.save(planetas)) {
              
                 System.out.println("guardado planeta");
@@ -102,7 +101,7 @@ buscarContinentes();
 
             //   System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
-            System.out.println("main() Error() " + e.getLocalizedMessage());
+            System.out.println("savePlanetas() " + e.getLocalizedMessage());
         }
         return planetas;
     }
@@ -110,10 +109,10 @@ buscarContinentes();
     private Boolean saveContinentes() {
         try {
 
-            continentes.setIdcontinente("am");
-            continentes.setContinente("America");
-
-            Planetas p1 = new Planetas("tr", "Tierra", new Date());
+            continentes.setIdcontinente("eu");
+            continentes.setContinente("Europa");
+planetas = planetasFacade.find("idplaneta", "tierra");
+            //Planetas p1 = new Planetas("tr", "Tierra", new Date());
 //            Planetas p2 = new Planetas("mr", "Marte", new Date());
 //            Planetas p3 = new Planetas("jp", "Jupiter", new Date());
 //            List<Planetas> l = new ArrayList<>();
@@ -129,7 +128,7 @@ buscarContinentes();
 
          //   continentes.setCiudades(list);
 //          continentes.setGente(l1);
-        continentes.setPlanetas(p1);
+        continentes.setPlanetas(planetas);
 //            continentes.setPlanetas(l);
             if (continentesFacade.save(continentes)) {
 
