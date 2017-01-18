@@ -22,7 +22,7 @@ public class Planetas {
 @Id
     private String idplaneta;
     private String planeta;
-@Ignore    
+//@Ignore    
     private Date fecha;
 
     public Planetas() {
@@ -32,6 +32,11 @@ public class Planetas {
         this.idplaneta = idplaneta;
         this.planeta = planeta;
         this.fecha = fecha;
+    }
+
+    @Override
+    public String toString() {
+        return "Planetas{" + "idplaneta=" + idplaneta + ", planeta=" + planeta + ", fecha=" + fecha + '}';
     }
 
     

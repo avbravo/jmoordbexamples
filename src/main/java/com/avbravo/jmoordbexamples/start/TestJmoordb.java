@@ -31,16 +31,40 @@ public class TestJmoordb {
 
     public void ejecutar() {
         try {
-            savePlanetas();
+         // savePlanetas();
+           // saveContinentes();
+            //   savePaises();
             saveContinentes();
-         //   savePaises();
-
+buscarContinentes();
+        
+//           buscarPaises();
             //System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
             System.out.println("main() Error() " + e.getLocalizedMessage());
         }
     }
 
+    private void buscarPaises(){
+         Planetas p1 = planetasFacade.find("idplaneta", "tierra");
+            if(p1 == null){
+                System.out.println("No hay un planeta con ese codigo");
+            }else
+            {
+                System.out.println(""+p1.toString());
+            }
+            
+    }
+    private void buscarContinentes(){
+         Continentes c = continentesFacade.find("idcontinente", "am");
+            if(c == null){
+                System.out.println("No hay un continente con ese codigo");
+            }else
+            {
+                System.out.println(""+c.toString());
+                System.out.println("Planeta: " +c.getPlanetas().getPlaneta());
+            }
+            
+    }
     private Boolean savePaises() {
         try {
 
@@ -48,14 +72,13 @@ public class TestJmoordb {
             paises.setPais("Francia");
             paises.setFecha(new Date());
             if (paisesFacade.save(paises)) {
-                System.out.println("########################################");
+               
                 System.out.println("guardado el pais");
-                System.out.println("########################################");
             } else {
                 System.out.println("no se guardo");
             }
 
-           // System.out.println("--->toString() " + paisesFacade.getDocument(paises).toString());
+            // System.out.println("--->toString() " + paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
             System.out.println("main() Error() " + e.getLocalizedMessage());
         }
@@ -66,16 +89,16 @@ public class TestJmoordb {
 
         try {
 
-            planetas.setIdplaneta("tierra");
-            planetas.setPlaneta("Tierra");
+            planetas.setIdplaneta("marte");
+            planetas.setPlaneta("Marte");
             planetas.setFecha(new Date());
-//            if (planetasFacade.save(planetas)) {
-//                System.out.println("########################################");
-//                System.out.println("guardado planeta");
-//                System.out.println("########################################");
-//            } else {
-//                System.out.println("no se guardo");
-//            }
+            if (planetasFacade.save(planetas)) {
+             
+                System.out.println("guardado planeta");
+             
+            } else {
+                System.out.println("no se guardo");
+            }
 
             //   System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
@@ -89,33 +112,35 @@ public class TestJmoordb {
 
             continentes.setIdcontinente("am");
             continentes.setContinente("America");
-            
-            Planetas p1 = new Planetas("tr", "Tierra",   new Date());
-            Planetas p2 = new Planetas("mr", "Marte",   new Date());
-            Planetas p3= new Planetas("jp", "Jupiter",   new Date());
-            List<Planetas> l = new ArrayList<>();
-            l.add(p1);
-            l.add(p2);
-            l.add(p3);
-            
-            
-            List<String> l1 = new ArrayList<>();
-            l1.add("Uno");
-            l1.add("Dos");
-            l1.add("Tres");
+
+            Planetas p1 = new Planetas("tr", "Tierra", new Date());
+//            Planetas p2 = new Planetas("mr", "Marte", new Date());
+//            Planetas p3 = new Planetas("jp", "Jupiter", new Date());
+//            List<Planetas> l = new ArrayList<>();
+//            l.add(p1);
+//            l.add(p2);
+//            l.add(p3);
+//
+//            List<String> list = new ArrayList<>();
+//
+//            list.add("Panama");
+//
+//            list.add("Los Santos");
+
+         //   continentes.setCiudades(list);
 //          continentes.setGente(l1);
-//            continentes.setPlanetas(p1);
-            continentes.setPlanetas(l);
+        continentes.setPlanetas(p1);
+//            continentes.setPlanetas(l);
             if (continentesFacade.save(continentes)) {
-              
+
                 System.out.println("guardado continente");
-                System.out.println("########################################");
+
             } else {
                 System.out.println("no se guardo");
             }
             //   System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
-            System.out.println("main() Error() " + e.getLocalizedMessage());
+            System.out.println("Error() " + e.getLocalizedMessage());
         }
         return false;
     }

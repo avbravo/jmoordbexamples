@@ -23,9 +23,18 @@ public class Continentes {
     @Id
     private String idcontinente;
     private String continente;
-    @Referenced(documment = "Planetas",field = "idplaneta")
-    private List<Planetas> planetas;
+@Embedded
+private Planetas planetas;
+//    @Referenced(documment = "Planetas",field = "idplaneta")
+//    private List<Planetas> planetas;
     
-       private List<String> gente;
+//       private List<String>  ciudades;
+
+    @Override
+    public String toString() {
+        return "Continentes{" + "idcontinente=" + idcontinente + ", continente=" + continente + ", planetas=" + planetas + '}';
+    }
+
+  
 
 }
