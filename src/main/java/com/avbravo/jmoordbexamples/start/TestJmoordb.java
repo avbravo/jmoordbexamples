@@ -38,7 +38,7 @@ public class TestJmoordb {
       // savePlanetas();
            // saveContinentes();
             //   savePaises();
- saveContinentes();
+// saveContinentes();
 buscarContinentes();
         
 //           buscarPaises();
@@ -80,7 +80,7 @@ buscarContinentes();
             
     }
     private void buscarContinentes(){
-         Continentes c = continentesFacade.find("idcontinente", "oc");
+         Continentes c = continentesFacade.find("idcontinente", "eu");
             if(c == null){
                 System.out.println("No hay un continente con ese codigo");
             }else
@@ -152,7 +152,7 @@ planetas = new Planetas("saturno", "Saturno",new Date());
 
             list.add("Los Santos");
 
-            continentes.setCiudades(list);
+//            continentes.setCiudades(list);
 //          continentes.setGente(l1);
 //        continentes.setPlanetas(planetas);
 //            continentes.setPlanetas(l);

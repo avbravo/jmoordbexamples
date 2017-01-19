@@ -24,12 +24,14 @@ public class Continentes {
     private String idcontinente;
     private String continente;
     
-    private List<String> ciudades;
+   List<String> ciudades;
 
     @Override
     public String toString() {
         return "Continentes{" + "idcontinente=" + idcontinente + ", continente=" + continente + ", ciudades=" + ciudades + '}';
     }
+   
+   
 
   
 
