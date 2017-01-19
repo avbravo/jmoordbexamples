@@ -6,9 +6,9 @@
 package com.avbravo.jmoordbexamples.entity;
 
 import com.avbravo.jmoordb.anotations.DatePattern;
-import com.avbravo.jmoordb.anotations.Entity;
+import com.avbravo.jmoordb.anotations.Embedded;
 import com.avbravo.jmoordb.anotations.Id;
-import com.avbravo.jmoordb.anotations.Referenced;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,14 +22,15 @@ public class Continentes {
 
     @Id
     private String idcontinente;
-    @DatePattern()
     private String continente;
-    @Referenced(documment = "Planetas",field = "idplaneta",lazy=true,facade = "com.avbravo.jmoordbexamples.ejb.PlanetasFacade")
-    private Planetas planetas;
+    
+    private List<String> ciudades;
 
     @Override
     public String toString() {
-        return "Continentes{" + "idcontinente=" + idcontinente + ", continente=" + continente + ", planetas=" + planetas + '}';
+        return "Continentes{" + "idcontinente=" + idcontinente + ", continente=" + continente + ", ciudades=" + ciudades + '}';
     }
+
+  
 
 }
