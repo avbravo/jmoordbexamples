@@ -86,6 +86,9 @@ buscarContinentes();
             }else
             {
                 System.out.println(""+c.toString());
+                for(Planetas p:c.getPlanetas()){
+                    System.out.println("<-**El planeta es ** -> "+p.getPlaneta());
+                }
               //  System.out.println("Planeta: " +c.getPlanetas().getPlaneta());
             }
             

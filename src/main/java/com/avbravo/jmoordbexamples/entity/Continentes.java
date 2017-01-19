@@ -23,13 +23,14 @@ public class Continentes {
     @Id
     private String idcontinente;
     private String continente;
-    
-   List<String> ciudades;
+    @Embedded
+   List<Planetas> planetas;
 
     @Override
     public String toString() {
-        return "Continentes{" + "idcontinente=" + idcontinente + ", continente=" + continente + ", ciudades=" + ciudades + '}';
+        return "Continentes{" + "idcontinente=" + idcontinente + ", continente=" + continente + ", planetas=" + planetas + '}';
     }
+
    
    
 
