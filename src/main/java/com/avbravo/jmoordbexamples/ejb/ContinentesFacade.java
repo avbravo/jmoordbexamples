@@ -27,6 +27,11 @@ public class ContinentesFacade extends AbstractFacade<Continentes>{
          return mongoClient;
     }
 
+    @Override
+    public Object findById(String key, String value) {
+       return find(value, key);
+    }
+
    
 
    

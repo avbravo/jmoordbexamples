@@ -11,6 +11,7 @@ import com.avbravo.jmoordbexamples.ejb.PlanetasFacade;
 import com.avbravo.jmoordbexamples.entity.Continentes;
 import com.avbravo.jmoordbexamples.entity.Paises;
 import com.avbravo.jmoordbexamples.entity.Planetas;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,19 +33,42 @@ public class TestJmoordb {
 
     public void ejecutar() {
         try {
+            
+           // recursivo();
       // savePlanetas();
            // saveContinentes();
             //   savePaises();
-    //   saveContinentes();
+  //   saveContinentes();
 buscarContinentes();
         
 //           buscarPaises();
             //System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
-            System.out.println("main() Error() " + e.getLocalizedMessage());
+            System.out.println("main() " + e.getLocalizedMessage());
         }
     }
 
+    
+    private void recursivo(){
+        try {
+              System.out.println("-----------------------------------------------");
+                        Class cls = Class.forName("com.avbravo.jmoordbexamples.ejb.PlanetasFacade");
+                        Object obj = cls.newInstance();
+                        System.out.println("paso 2");
+                        Method method;
+                       Class[] paramString = new Class[2];
+                        paramString[0] = String.class;
+                        paramString[1] = String.class;
+                       method = cls.getDeclaredMethod("find2",  paramString);
+   //                  
+                        String[] param = {"idplaneta", "tierra"};
+                       
+                     Planetas  v= (Planetas)  method.invoke(obj, param);
+                        System.out.println("V "+v.toString());
+        } catch (Exception e) {
+            System.out.println("Recursivo "+e.getMessage());
+        }
+    }
     private void buscarPaises(){
          Planetas p1 = planetasFacade.find("idplaneta", "tierra");
             if(p1 == null){

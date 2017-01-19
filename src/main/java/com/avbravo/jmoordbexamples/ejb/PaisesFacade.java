@@ -25,5 +25,8 @@ public class PaisesFacade extends AbstractFacade<Paises>{
          MongoClient mongoClient = new MongoClient();
          return mongoClient;
     }
-
+ @Override
+    public Object findById(String key, String value) {
+       return find(value, key);
+    }
 }

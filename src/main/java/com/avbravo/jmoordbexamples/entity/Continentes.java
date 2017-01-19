@@ -23,7 +23,7 @@ public class Continentes {
     @Id
     private String idcontinente;
     private String continente;
-    @Referenced(documment = "Planetas",field = "idplaneta",lazy=true)
+    @Referenced(documment = "Planetas",field = "idplaneta",lazy=true,facade = "com.avbravo.jmoordbexamples.ejb.PlanetasFacade")
     private Planetas planetas;
 
     @Override

@@ -26,4 +26,9 @@ public class PlanetasFacade extends AbstractFacade<Planetas>{
          return mongoClient;
     }
 
+    @Override
+    public Object findById(String value, String key ){
+    return find(value, key);
+}
+
 }
