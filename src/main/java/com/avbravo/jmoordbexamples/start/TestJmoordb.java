@@ -80,13 +80,13 @@ buscarContinentes();
             
     }
     private void buscarContinentes(){
-         Continentes c = continentesFacade.find("idcontinente", "eu");
+         Continentes c = continentesFacade.find("idcontinente", "am");
             if(c == null){
                 System.out.println("No hay un continente con ese codigo");
             }else
             {
                 System.out.println(""+c.toString());
-                System.out.println("Planeta: " +c.getPlanetas().getPlaneta());
+              //  System.out.println("Planeta: " +c.getPlanetas().getPlaneta());
             }
             
     }
