@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 public class Planetas {
 @Id
-    private String idplaneta;
+    private Integer idplaneta;
     private String planeta;
    //@Ignore    
     private Date fecha;
@@ -28,11 +28,13 @@ public class Planetas {
     public Planetas() {
     }
 
-    public Planetas(String idplaneta, String planeta, Date fecha) {
+    public Planetas(Integer idplaneta, String planeta, Date fecha) {
         this.idplaneta = idplaneta;
         this.planeta = planeta;
         this.fecha = fecha;
     }
+
+  
 
     @Override
     public String toString() {

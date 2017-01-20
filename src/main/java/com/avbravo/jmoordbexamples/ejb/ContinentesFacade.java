@@ -29,7 +29,12 @@ public class ContinentesFacade extends AbstractFacade<Continentes>{
 
     @Override
     public Object findById(String key, String value) {
-       return find(value, key);
+       return find(key, value);
+    }
+
+    @Override
+    public Object findById(String key, Integer value) {
+     return find(key, value); 
     }
 
    

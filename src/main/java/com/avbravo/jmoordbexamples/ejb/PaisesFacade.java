@@ -27,6 +27,11 @@ public class PaisesFacade extends AbstractFacade<Paises>{
     }
  @Override
     public Object findById(String key, String value) {
-       return find(value, key);
+       return find(key,value);
+    }
+
+    @Override
+    public Object findById(String key, Integer value) {
+        return find(key,value);
     }
 }

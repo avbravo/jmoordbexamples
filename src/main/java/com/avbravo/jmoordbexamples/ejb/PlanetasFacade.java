@@ -25,9 +25,14 @@ public class PlanetasFacade extends AbstractFacade<Planetas> {
         return mongoClient;
     }
 
+   @Override
+    public Object findById(String key, String value) {
+       return find(key,value);
+    }
+
     @Override
-    public Object findById(String value, String key) {
-        return find(value, key);
+    public Object findById(String key, Integer value) {
+        return find(key,value);
     }
 
 }
