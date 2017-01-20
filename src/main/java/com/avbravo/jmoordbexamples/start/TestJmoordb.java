@@ -38,7 +38,7 @@ public class TestJmoordb {
       // savePlanetas();
            // saveContinentes();
             //   savePaises();
-// saveContinentes();
+//saveContinentes();
 buscarContinentes();
         
 //           buscarPaises();
@@ -80,15 +80,15 @@ buscarContinentes();
             
     }
     private void buscarContinentes(){
-         Continentes c = continentesFacade.find("idcontinente", "eu");
+         Continentes c = continentesFacade.find("idcontinente", "oc");
             if(c == null){
                 System.out.println("No hay un continente con ese codigo");
             }else
             {
                 System.out.println(""+c.toString());
-                for(Planetas p:c.getPlanetas()){
-                    System.out.println("<-**El planeta es ** -> "+p.getPlaneta());
-                }
+//                for(Planetas p:c.getPlanetas()){
+//                    System.out.println("<-**El planeta es ** -> "+p.getPlaneta());
+//                }
               //  System.out.println("Planeta: " +c.getPlanetas().getPlaneta());
             }
             
@@ -138,25 +138,24 @@ planetas = new Planetas("saturno", "Saturno",new Date());
 
             continentes.setIdcontinente("oc");
             continentes.setContinente("Oceania");
-//Planetas p1 = planetasFacade.find("idplaneta", "tierra");
-//Planetas p2 = planetasFacade.find("idplaneta", "marte");
+Planetas p1 = planetasFacade.find("idplaneta", "tierra");
+//continentes.setPlanetas(p1);
+Planetas p2 = planetasFacade.find("idplaneta", "marte");
+List<Planetas> l = new ArrayList<>();
+  l.add(p1);
+         l.add(p2);
+  continentes.setPlanetas(l);
 
-            //Planetas p1 = new Planetas("tr", "Tierra", new Date());
-//            Planetas p2 = new Planetas("mr", "Marte", new Date());
-//            Planetas p3 = new Planetas("jp", "Jupiter", new Date());
-//            List<Planetas> l = new ArrayList<>();
-//           l.add(p1);
-//           l.add(p2);
-//            l.add(p3);
+
 //
-            List<String> list = new ArrayList<>();
-
-            list.add("Panama");
-
-            list.add("Los Santos");
+//            List<String> list = new ArrayList<>();
+//
+//            list.add("Panama");
+//
+//            list.add("Los Santos");
 
 //            continentes.setCiudades(list);
-//          continentes.setGente(l1);
+//        
 //        continentes.setPlanetas(planetas);
 //            continentes.setPlanetas(l);
             if (continentesFacade.save(continentes)) {
