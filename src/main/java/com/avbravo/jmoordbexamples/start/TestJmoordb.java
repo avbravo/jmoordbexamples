@@ -37,8 +37,8 @@ public class TestJmoordb {
 //Planetas p = (Planetas)planetasFacade.find("idplaneta", a);
 //            System.out.println("planetas "+p.toString());
             // recursivo();
-//            savePlanetas();
-  //          saveContinentes();
+//           savePlanetas();
+//           saveContinentes();
          buscarContinentes();
 
 //           buscarPaises();
@@ -148,12 +148,12 @@ public class TestJmoordb {
             continentes.setIdcontinente("oc");
             continentes.setContinente("Oceania");
             Planetas p1 = planetasFacade.find("idplaneta", 1);
-//continentes.setPlanetas(p1);
-            Planetas p2 = planetasFacade.find("idplaneta", 2);
-            List<Planetas> l = new ArrayList<>();
-            l.add(p1);
-            l.add(p2);
-            continentes.setPlanetas(l);
+continentes.setPlanetas(p1);
+//            Planetas p2 = planetasFacade.find("idplaneta", 2);
+//            List<Planetas> l = new ArrayList<>();
+//            l.add(p1);
+//            l.add(p2);
+//            continentes.setPlanetas(l);
 
 //
 //            List<String> list = new ArrayList<>();
