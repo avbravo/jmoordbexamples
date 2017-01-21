@@ -12,9 +12,8 @@ import com.avbravo.jmoordbexamples.entity.Continentes;
 import com.avbravo.jmoordbexamples.entity.Paises;
 import com.avbravo.jmoordbexamples.entity.Planetas;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import org.bson.Document;
 
 /**
  *
@@ -80,7 +79,9 @@ public class TestJmoordb {
     }
 
     private void buscarContinentes() {
-        Continentes c = continentesFacade.find("idcontinente", "oc");
+        
+//        Continentes c = continentesFacade.find("idcontinente", "oc");
+        Continentes c = continentesFacade.find(new Document("idcontinente", "oc"));
         if (c == null) {
             System.out.println("No hay un continente con ese codigo");
         } else {

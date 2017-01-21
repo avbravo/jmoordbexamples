@@ -6,7 +6,7 @@
 package com.avbravo.jmoordbexamples.ejb;
 
 
-import com.avbravo.jmoordb.persistence.AbstractFacade;
+import com.avbravo.jmoordb.facade.AbstractFacade;
 import com.avbravo.jmoordbexamples.entity.Paises;
 import com.mongodb.MongoClient;
 
