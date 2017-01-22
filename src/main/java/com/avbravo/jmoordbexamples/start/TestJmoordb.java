@@ -37,8 +37,28 @@ public class TestJmoordb {
 //            System.out.println("planetas "+p.toString());
             // recursivo();
 //           savePlanetas();
-//           saveContinentes();
-         buscarContinentes();
+           Integer n = continentesFacade.count(new Document("planetas",new Document("idplaneta","marte")
+           .append("planeta", "Marte") 
+           ));
+           
+      
+            System.out.println("n "+n);
+//savePlanetasInteger() ;
+//Planetas planetas =new Planetas("tierra", "Tierra", new Date());
+//planetasFacade.save(planetas);
+//saveContinentes();
+//Planetas p1 = planetasFacade.findById(planetas);
+//if(p1 == null){
+//    System.out.println("---no hay planetas");
+//}else
+//{
+//    System.out.println("el planeta es "+p1.toString());
+//}
+//buscarContinentes();
+//planetasFacade.createIndex();
+//Document doc = continentesFacade.findById(continentes);
+            //System.out.println("doc "+doc.toJson());
+   //      buscarContinentes();
 
 //           buscarPaises();
             //System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
@@ -46,6 +66,8 @@ public class TestJmoordb {
             System.out.println("main() " + e.getLocalizedMessage());
         }
     }
+    
+    
 
     private void recursivo() {
         try {
@@ -114,26 +136,14 @@ public class TestJmoordb {
         return false;
     }
 
-    private Planetas savePlanetas() {
+    private Planetas savePlanetasInteger() {
 
         try {
-            planetas = new Planetas(1, "Saturno", new Date());
-
+            planetas = new Planetas("tierra", "Tierra", new Date());
             if (planetasFacade.save(planetas)) {
-
                 System.out.println("guardado planeta");
-
-            } else {
-                System.out.println("no se guardo");
-            }
-            planetas = new Planetas(2, "Jupiter", new Date());
-
-            if (planetasFacade.save(planetas)) {
-
-                System.out.println("guardado planeta");
-
-            } else {
-                System.out.println("no se guardo");
+            }else{
+                System.out.println("no se guardo el planeta "+planetasFacade.getException());
             }
 
             //   System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
@@ -142,13 +152,41 @@ public class TestJmoordb {
         }
         return planetas;
     }
+//    private Planetas savePlanetasInteger() {
+//
+//        try {
+//            planetas = new Planetas(1, "Saturno", new Date());
+//
+//            if (planetasFacade.save(planetas)) {
+//
+//                System.out.println("guardado planeta");
+//
+//            } else {
+//                System.out.println("no se guardo");
+//            }
+//            planetas = new Planetas(2, "Jupiter", new Date());
+//
+//            if (planetasFacade.save(planetas)) {
+//
+//                System.out.println("guardado planeta");
+//
+//            } else {
+//                System.out.println("no se guardo");
+//            }
+//
+//            //   System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
+//        } catch (Exception e) {
+//            System.out.println("savePlanetas() " + e.getLocalizedMessage());
+//        }
+//        return planetas;
+//    }
 
     private Boolean saveContinentes() {
         try {
 
-            continentes.setIdcontinente("oc");
-            continentes.setContinente("Oceania");
-            Planetas p1 = planetasFacade.find("idplaneta", 1);
+            continentes.setIdcontinente("af");
+            continentes.setContinente("Africa");
+            Planetas p1 = planetasFacade.find("idplaneta", "marte");
 continentes.setPlanetas(p1);
 //            Planetas p2 = planetasFacade.find("idplaneta", 2);
 //            List<Planetas> l = new ArrayList<>();
