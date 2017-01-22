@@ -7,6 +7,7 @@ package com.avbravo.jmoordbexamples.entity;
 
 import com.avbravo.jmoordb.anotations.Embedded;
 import com.avbravo.jmoordb.anotations.Id;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +23,7 @@ public class Continentes {
     private String idcontinente;
     private String continente;
    @Embedded
-    private Planetas planetas;
+    private List<Planetas> planetas;
 
     @Override
     public String toString() {
