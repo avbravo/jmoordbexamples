@@ -12,7 +12,9 @@ import com.avbravo.jmoordbexamples.entity.Continentes;
 import com.avbravo.jmoordbexamples.entity.Paises;
 import com.avbravo.jmoordbexamples.entity.Planetas;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.bson.Document;
 
 /**
@@ -30,19 +32,35 @@ public class TestJmoordb {
     Paises paises = new Paises();
 
     public void ejecutar() {
-        try {
-            Integer a=1;
-//Planetas p = (Planetas)planetasFacade.findById("idplaneta", String.valueOf(a));
-//Planetas p = (Planetas)planetasFacade.find("idplaneta", a);
-//            System.out.println("planetas "+p.toString());
-            // recursivo();
-//           savePlanetas();
-           Integer n = continentesFacade.count(new Document("planetas",new Document("idplaneta","marte")
-           .append("planeta", "Marte") 
-           ));
+       try {
            
-      
-            System.out.println("n "+n);
+//           List<Continentes> list = new ArrayList<>();
+//           list = continentesFacade.findAll(new Document("continente",1));
+//           for(Continentes c:list){
+//               System.out.println("c: "+c.toString());
+//           }
+        buscarContinentesEmbebidos();
+//           for(Continentes c:list){
+//               System.out.println("c: "+c.toString());
+//           }
+   
+//            Integer a=1;
+////Planetas p = (Planetas)planetasFacade.findById("idplaneta", String.valueOf(a));
+////Planetas p = (Planetas)planetasFacade.find("idplaneta", a);
+////            System.out.println("planetas "+p.toString());
+//            // recursivo();
+////           savePlanetas();
+/**
+ * contador
+ */
+//           Integer n = continentesFacade.count(new Document("planetas",new Document("idplaneta","marte")
+//         .append("planeta", "Marte") 
+//          ));
+     //      Integer n = continentesFacade.count(new Document("planetas.idplaneta", "marte")) ;
+
+           
+//      
+       //   System.out.println("n "+n);
 //savePlanetasInteger() ;
 //Planetas planetas =new Planetas("tierra", "Tierra", new Date());
 //planetasFacade.save(planetas);
@@ -66,7 +84,20 @@ public class TestJmoordb {
             System.out.println("main() " + e.getLocalizedMessage());
         }
     }
-    
+    public void buscarContinentesEmbebidos(){
+        try {
+             List<Continentes> list = new ArrayList<>();
+        Continentes c = continentesFacade.find(new Document("planetas.idplaneta","marte"));
+        if(c == null){
+            System.out.println("no existe");
+        }
+        else{
+            System.out.println(""+c.toString());
+        }
+        } catch (Exception e) {
+            System.out.println("buscarContinentesEmbebidos() "+e.getLocalizedMessage());
+        }
+    }
     
 
     private void recursivo() {
@@ -184,8 +215,8 @@ public class TestJmoordb {
     private Boolean saveContinentes() {
         try {
 
-            continentes.setIdcontinente("af");
-            continentes.setContinente("Africa");
+            continentes.setIdcontinente("as");
+            continentes.setContinente("Asia");
             Planetas p1 = planetasFacade.find("idplaneta", "marte");
 continentes.setPlanetas(p1);
 //            Planetas p2 = planetasFacade.find("idplaneta", 2);
