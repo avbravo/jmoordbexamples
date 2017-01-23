@@ -5,10 +5,14 @@
  */
 package com.avbravo.jmoordbexamples.start;
 
+import com.avbravo.jmoordbexamples.ejb.AutoincrementableFacade;
 import com.avbravo.jmoordbexamples.ejb.ContinentesFacade;
+import com.avbravo.jmoordbexamples.ejb.FacturasFacade;
 import com.avbravo.jmoordbexamples.ejb.PaisesFacade;
 import com.avbravo.jmoordbexamples.ejb.PlanetasFacade;
+import com.avbravo.jmoordbexamples.entity.Autoincrementable;
 import com.avbravo.jmoordbexamples.entity.Continentes;
+import com.avbravo.jmoordbexamples.entity.Facturas;
 import com.avbravo.jmoordbexamples.entity.Paises;
 import com.avbravo.jmoordbexamples.entity.Planetas;
 import java.lang.reflect.Method;
@@ -26,31 +30,125 @@ public class TestJmoordb {
     ContinentesFacade continentesFacade = new ContinentesFacade();
     PlanetasFacade planetasFacade = new PlanetasFacade();
     PaisesFacade paisesFacade = new PaisesFacade();
-
+    AutoincrementableFacade autoincrementableFacade = new AutoincrementableFacade();
+    FacturasFacade facturasFacade = new FacturasFacade();
     Continentes continentes = new Continentes();
     Planetas planetas = new Planetas();
     Paises paises = new Paises();
 
     public void ejecutar() {
         try {
+           eliminarColeccion();
+    //  createColeccion();
+//            verificarSiexisteColeccion();
+//verlistaColecciones();
 
 
+//iniciarAutoicrementable();
+//    guardarFactura();
 //saveContinentes();
-           // buscarContinentesEmbebidos();
-
-contarEmbebidos();
-            
-
+            // buscarContinentesEmbebidos();
+//contarEmbebidos();
         } catch (Exception e) {
             System.out.println("main() " + e.getLocalizedMessage());
         }
     }
+
+    /**
+     * 
+     */
     
-    public void contarEmbebidos()
-    {
-         Integer n = continentesFacade.count(new Document("planetas.idplaneta", "marte")) ;
+    public void eliminarColeccion(){
+        
+          if(facturasFacade.drop("facturas")){
+              System.out.println("se elimino facturas");
+          }else{
+              System.out.println("no se elimino la coleccion facturas "+facturasFacade.getException());
+             
+          }
+//          if(facturasFacade.drop()){
+//              System.out.println("se elimino facturas");
+//          }else{
+//              System.out.println("no se elimino la coleccion facturas "+facturasFacade.getException());
+//             
+//          }
+    }
+    
+    public void createColeccion(){
+        
+        if(facturasFacade.createCollection("facturas")){
+            System.out.println("se creo la coleccion");
+        }else{
+            System.out.println("no se pudo crear la coleccion "+facturasFacade.getException());
+        }
+    }
+    public void verificarSiexisteColeccion(){
+        
+        if(facturasFacade.existsCollection("continentes")){
+            System.out.println("Existe la coleccion");
+        }else{
+            System.out.println("no existe la coleccion");
+        }
+    }
+    public void verlistaColecciones() {
+        try {
+            List<String> list = facturasFacade.listCollecctions();
+            if (list.isEmpty()) {
+                System.out.println("No hay colecciones en la base de datos");
+            } else {
+                list.forEach((s) -> {
+                    System.out.println("coleccion: " + s);
+                });
+            }
+        } catch (Exception e) {
+            System.out.println("verlistaColecciones() " + e.getLocalizedMessage());
+        }
+    }
+
+    public void guardarFactura() {
+        try {
+            Autoincrementable autoincrementable = new Autoincrementable();
+            autoincrementable = autoincrementableFacade.findOneAndUpdate("documento", "facturas", "contador");
+            Integer id = 0;
+            if (autoincrementable == null) {
+                System.out.println("No existe el autoincrementable para facturas");
+            } else {
+                id = autoincrementable.getContador();
+            }
+
+            Facturas facturas = new Facturas();
+            facturas.setIdfactura(id);
+            facturas.setVentas(5085.23);
+            if (facturasFacade.save(facturas)) {
+                System.out.println("guardado");
+            } else {
+                System.out.println("No se guardo " + facturasFacade.getException());
+            }
+
+        } catch (Exception e) {
+            System.out.println("guardarFactura() " + e.getLocalizedMessage());
+        }
+    }
+
+    public void iniciarAutoicrementable() {
+        try {
+            Autoincrementable autoincrementable = new Autoincrementable("facturas", 0);
+            if (autoincrementableFacade.save(autoincrementable)) {
+                System.out.println("guardado ");
+            } else {
+                System.out.println("no se guardo " + autoincrementableFacade.getException());
+            }
+
+        } catch (Exception e) {
+            System.out.println("iniciarAutoincrementable() " + e.getLocalizedMessage());
+
+        }
+    }
+
+    public void contarEmbebidos() {
+        Integer n = continentesFacade.count(new Document("planetas.idplaneta", "marte"));
 //      
-            System.out.println("n "+n);
+        System.out.println("n " + n);
     }
 
     public void buscarContinentesEmbebidos() {
