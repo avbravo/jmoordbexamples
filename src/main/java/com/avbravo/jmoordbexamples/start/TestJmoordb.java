@@ -65,15 +65,15 @@ public class TestJmoordb {
  //FECHSA
         
          
-        
+        helpers();
 
-List<Paises> l = paisesFacade.findlike("pais", "Ale");
-
-            System.out.println("paso 1");
-            System.out.println("size() "+l.size());
-for(Paises p:l){
-    System.out.println(" "+l.toString());
-}
+//List<Paises> l = paisesFacade.findlike("pais", "Ale");
+//
+//            System.out.println("paso 1");
+//            System.out.println("size() "+l.size());
+//for(Paises p:l){
+//    System.out.println(" "+l.toString());
+//}
         } catch (Exception e) {
             System.out.println("main() " + e.getLocalizedMessage());
         }
@@ -84,6 +84,31 @@ for(Paises p:l){
      * 
      */
     
+    public void helpers(){
+        try {
+           
+            ///
+            List<Continentes> l = continentesFacade.helpers("eq","planetas.idplaneta",1);
+
+          
+            System.out.println("size() "+l.size());
+for(Continentes p:l){
+    System.out.println(" "+l.toString());
+}
+        } catch (Exception e) {
+            System.out.println("helpers() "+e.getLocalizedMessage());
+        }
+    }
+    
+    public void like(){
+        List<Paises> l = paisesFacade.findlike("pais", "Ale");
+
+            System.out.println("paso 1");
+            System.out.println("size() "+l.size());
+for(Paises p:l){
+    System.out.println(" "+l.toString());
+}
+    }
     public void fechas(){
         try{
           
@@ -286,7 +311,7 @@ for(Paises p:l){
     private Planetas savePlanetasInteger() {
 
         try {
-            planetas = new Planetas("tierra", "Tierra", new Date());
+            planetas = new Planetas(2, "Tierra", new Date());
             if (planetasFacade.save(planetas)) {
                 System.out.println("guardado planeta");
             } else {
