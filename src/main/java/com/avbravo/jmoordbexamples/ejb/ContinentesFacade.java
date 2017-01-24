@@ -8,6 +8,7 @@ package com.avbravo.jmoordbexamples.ejb;
 
 import com.avbravo.jmoordb.facade.AbstractFacade;
 import com.avbravo.jmoordbexamples.entity.Continentes;
+import com.avbravo.jmoordbexamples.provider.MongoClientProvider;
 import com.mongodb.MongoClient;
 import org.bson.Document;
 
@@ -16,16 +17,16 @@ import org.bson.Document;
  * @author avbravo
  */
 public class ContinentesFacade extends AbstractFacade<Continentes>{
-
+MongoClientProvider mongoclientProvider = new MongoClientProvider();
     public ContinentesFacade( ){
         super(Continentes.class, "fantasy", "continentes");
     }
 
-    @Override
+      @Override
     protected MongoClient getMongoClient() {
-         MongoClient mongoClient = new MongoClient();
-         return mongoClient;
+       return mongoclientProvider.getMongoClient();
     }
+
 
     @Override
     public Object findById(String key, String value) {

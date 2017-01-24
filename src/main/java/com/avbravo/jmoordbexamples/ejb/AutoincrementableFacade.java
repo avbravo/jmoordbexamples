@@ -7,6 +7,7 @@ package com.avbravo.jmoordbexamples.ejb;
 
 import com.avbravo.jmoordb.facade.AbstractFacade;
 import com.avbravo.jmoordbexamples.entity.Autoincrementable;
+import com.avbravo.jmoordbexamples.provider.MongoClientProvider;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
@@ -19,22 +20,18 @@ import java.util.Arrays;
  */
 public class AutoincrementableFacade extends AbstractFacade<Autoincrementable> {
 
+    MongoClientProvider mongoclientProvider = new MongoClientProvider();
+
     public AutoincrementableFacade() {
         super(Autoincrementable.class, "fantasy", "autoincrementable");
     }
 
     @Override
     protected MongoClient getMongoClient() {
-        MongoClient mongoClient = new MongoClient();
-        return mongoClient;
+        return mongoclientProvider.getMongoClient();
     }
 
-    protected MongoClient getMongoClient(String database, String username, String password) {
-        char[] charArray = password.toCharArray();
-        MongoCredential credential = MongoCredential.createCredential(username, database, charArray);
-        MongoClient mongoClient = new MongoClient(new ServerAddress("localhost",27017), Arrays.asList(credential));
-        return mongoClient;
-    }
+  
 
     @Override
     public Object findById(String key, String value) {

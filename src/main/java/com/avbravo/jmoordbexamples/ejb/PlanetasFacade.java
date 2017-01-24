@@ -7,6 +7,7 @@ package com.avbravo.jmoordbexamples.ejb;
 
 import com.avbravo.jmoordb.facade.AbstractFacade;
 import com.avbravo.jmoordbexamples.entity.Planetas;
+import com.avbravo.jmoordbexamples.provider.MongoClientProvider;
 import com.mongodb.MongoClient;
 
 /**
@@ -14,15 +15,14 @@ import com.mongodb.MongoClient;
  * @author avbravo
  */
 public class PlanetasFacade extends AbstractFacade<Planetas> {
-
+ MongoClientProvider mongoclientProvider = new MongoClientProvider();
     public PlanetasFacade() {
         super(Planetas.class, "fantasy", "planetas");
     }
 
     @Override
     protected MongoClient getMongoClient() {
-        MongoClient mongoClient = new MongoClient();
-        return mongoClient;
+       return mongoclientProvider.getMongoClient();
     }
 
    @Override

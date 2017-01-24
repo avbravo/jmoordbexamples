@@ -38,7 +38,7 @@ public class TestJmoordb {
 
     public void ejecutar() {
         try {
-           eliminarColeccion();
+          // eliminarColeccion();
     //  createColeccion();
 //            verificarSiexisteColeccion();
 //verlistaColecciones();
@@ -49,6 +49,11 @@ public class TestJmoordb {
 //saveContinentes();
             // buscarContinentesEmbebidos();
 //contarEmbebidos();
+
+List<Planetas> list = planetasFacade.findAll();
+for(Planetas p:list){
+    System.out.println(" "+p.toString());
+}
         } catch (Exception e) {
             System.out.println("main() " + e.getLocalizedMessage());
         }

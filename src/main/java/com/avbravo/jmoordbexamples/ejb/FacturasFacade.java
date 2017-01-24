@@ -8,6 +8,7 @@ package com.avbravo.jmoordbexamples.ejb;
 
 import com.avbravo.jmoordb.facade.AbstractFacade;
 import com.avbravo.jmoordbexamples.entity.Facturas;
+import com.avbravo.jmoordbexamples.provider.MongoClientProvider;
 import com.mongodb.MongoClient;
 
 /**
@@ -15,16 +16,16 @@ import com.mongodb.MongoClient;
  * @author avbravo
  */
 public class FacturasFacade extends AbstractFacade<Facturas>{
-
+MongoClientProvider mongoclientProvider = new MongoClientProvider();
     public FacturasFacade( ){
         super(Facturas.class, "fantasy", "facturas");
     }
 
-    @Override
+     @Override
     protected MongoClient getMongoClient() {
-         MongoClient mongoClient = new MongoClient();
-         return mongoClient;
+       return mongoclientProvider.getMongoClient();
     }
+
  @Override
     public Object findById(String key, String value) {
        return find(key,value);
