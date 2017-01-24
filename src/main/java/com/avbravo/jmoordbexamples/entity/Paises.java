@@ -43,5 +43,10 @@ public class Paises {
 //        this.pais = pais;
 //    }
 //    
+
+    @Override
+    public String toString() {
+        return "Paises{" + "siglas=" + siglas + ", pais=" + pais + ", fecha=" + fecha + ", continentes=" + continentes + '}';
+    }
     
 }

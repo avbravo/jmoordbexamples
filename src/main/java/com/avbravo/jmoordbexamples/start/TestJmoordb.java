@@ -16,9 +16,12 @@ import com.avbravo.jmoordbexamples.entity.Facturas;
 import com.avbravo.jmoordbexamples.entity.Paises;
 import com.avbravo.jmoordbexamples.entity.Planetas;
 import java.lang.reflect.Method;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import org.bson.Document;
 
 /**
@@ -50,18 +53,61 @@ public class TestJmoordb {
             // buscarContinentesEmbebidos();
 //contarEmbebidos();
 
-List<Planetas> list = planetasFacade.findAll();
-for(Planetas p:list){
-    System.out.println(" "+p.toString());
+//List<Planetas> list = planetasFacade.findAll();
+//for(Planetas p:list){
+//    System.out.println(" "+p.toString());
+//}
+
+//List<Paises> l = paisesFacade.findBy("siglas","in");
+
+
+
+ //FECHSA
+        
+         
+        
+
+List<Paises> l = paisesFacade.findlike("pais", "Ale");
+
+            System.out.println("paso 1");
+            System.out.println("size() "+l.size());
+for(Paises p:l){
+    System.out.println(" "+l.toString());
 }
         } catch (Exception e) {
             System.out.println("main() " + e.getLocalizedMessage());
         }
     }
+    
 
     /**
      * 
      */
+    
+    public void fechas(){
+        try{
+          
+        Date date = new Date(1480582463992L);
+DateFormat df = new SimpleDateFormat("2017-01-16'T'03:45:17.209'Z'");
+
+ //FECHSA
+        
+         
+        
+df.setTimeZone(TimeZone.getTimeZone("UTC"));
+String isoString = df.format(date);//2016-12-01T08:54:23.992Z
+System.out.println("paso 0" +isoString);
+List<Paises> l = paisesFacade.findBy("fecha", isoString);
+            System.out.println("paso 1");
+            System.out.println("size() "+l.size());
+for(Paises p:l){
+    System.out.println(" "+l.toString());
+}
+        } catch (Exception e) {
+            System.out.println("main() " + e.getLocalizedMessage());
+        }
+    }
+   
     
     public void eliminarColeccion(){
         
