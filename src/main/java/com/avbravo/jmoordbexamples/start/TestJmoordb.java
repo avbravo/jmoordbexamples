@@ -41,6 +41,8 @@ public class TestJmoordb {
 
     public void ejecutar() {
         try {
+            update();
+//            delete();
           // eliminarColeccion();
     //  createColeccion();
 //            verificarSiexisteColeccion();
@@ -65,7 +67,7 @@ public class TestJmoordb {
  //FECHSA
         
          
-        helpers();
+       // helpers();
 
 //List<Paises> l = paisesFacade.findlike("pais", "Ale");
 //
@@ -80,6 +82,21 @@ public class TestJmoordb {
     }
     
 
+    public void update(){
+        paises = paisesFacade.find("siglas","al");
+        paises.setPais("Alemania X");
+       if(paisesFacade.update(paises)){
+           System.out.println("Actualizado");
+           
+       }else{
+           System.out.println(" no actualizado");
+       }
+            
+               
+    }
+    public void delete(){
+        paisesFacade.delete("siglas", "in");
+    }
     /**
      * 
      */
