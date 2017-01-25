@@ -40,8 +40,10 @@ public class TestJmoordb {
     Paises paises = new Paises();
 
     public void ejecutar() {
-        try {
-            update();
+try{
+        Document doc =paisesFacade.toDocument(paises);
+           
+            //    update();
 //            delete();
           // eliminarColeccion();
     //  createColeccion();
