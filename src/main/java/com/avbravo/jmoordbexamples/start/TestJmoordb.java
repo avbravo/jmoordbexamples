@@ -40,37 +40,27 @@ public class TestJmoordb {
     Paises paises = new Paises();
 
     public void ejecutar() {
-try{
-        Document doc =paisesFacade.toDocument(paises);
-           
+        try {
+
+            buscar();
             //    update();
 //            delete();
-          // eliminarColeccion();
-    //  createColeccion();
+            // eliminarColeccion();
+            //  createColeccion();
 //            verificarSiexisteColeccion();
 //verlistaColecciones();
-
-
 //iniciarAutoicrementable();
 //    guardarFactura();
 //saveContinentes();
             // buscarContinentesEmbebidos();
 //contarEmbebidos();
-
 //List<Planetas> list = planetasFacade.findAll();
 //for(Planetas p:list){
 //    System.out.println(" "+p.toString());
 //}
-
 //List<Paises> l = paisesFacade.findBy("siglas","in");
-
-
-
- //FECHSA
-        
-         
-       // helpers();
-
+            //FECHSA
+            // helpers();
 //List<Paises> l = paisesFacade.findlike("pais", "Ale");
 //
 //            System.out.println("paso 1");
@@ -82,85 +72,140 @@ try{
             System.out.println("main() " + e.getLocalizedMessage());
         }
     }
-    
 
-    public void update(){
-        paises = paisesFacade.find("siglas","al");
-        paises.setPais("Alemania X");
-       if(paisesFacade.update(paises)){
-           System.out.println("Actualizado");
-           
-       }else{
-           System.out.println(" no actualizado");
-       }
-            
-               
-    }
-    public void delete(){
-        paisesFacade.delete("siglas", "in");
-    }
-    /**
-     * 
-     */
-    
-    public void helpers(){
-        try {
-           
-            ///
-            List<Continentes> l = continentesFacade.helpers("eq","planetas.idplaneta",1);
+    public void buscar() {
 
-          
-            System.out.println("size() "+l.size());
-for(Continentes p:l){
-    System.out.println(" "+l.toString());
-}
-        } catch (Exception e) {
-            System.out.println("helpers() "+e.getLocalizedMessage());
+        //Entity
+        planetas = new Planetas();
+        planetas.setIdplaneta("tierra");
+        Planetas p1 = planetasFacade.find("idplaneta", "tierra");
+
+        if (p1 == null) {
+            System.out.println("no hay planetas");
+        } else {
+            System.out.println("el planeta es " + p1.toString());
+        }
+
+        //Por documento
+        Document doc = new Document("idplaneta", "tierra");
+        Planetas p2 = planetasFacade.find(doc);
+
+        if (p2 == null) {
+            System.out.println("no hay planetas");
+        } else {
+            System.out.println("el planeta es " + p2.toString());
         }
     }
-    
-    public void like(){
+
+    public void buscarID() {
+
+        //Entity
+        planetas = new Planetas();
+        planetas.setIdplaneta("tierra");
+        Planetas p1 = planetasFacade.findById(planetas);
+
+        if (p1 == null) {
+            System.out.println("no hay planetas");
+        } else {
+            System.out.println("el planeta es " + p1.toString());
+        }
+
+        //Por documento
+        Document doc = new Document("idplaneta", "tierra");
+        Planetas p2 = planetasFacade.findById(doc);
+
+        if (p2 == null) {
+            System.out.println("no hay planetas");
+        } else {
+            System.out.println("el planeta es " + p2.toString());
+        }
+    }
+
+    public void saveDocumento() {
+        Document doc = new Document("idplaneta", 3)
+                .append("planeta", "Jupiter")
+                .append("fecha", new Date());
+
+        if (planetasFacade.save(doc, false)) {
+            System.out.println("guardado ");
+        } else {
+            System.out.println("no se guardo " + planetasFacade.getException());
+        }
+    }
+
+    public void update() {
+        paises = paisesFacade.find("siglas", "al");
+        paises.setPais("Alemania X");
+        if (paisesFacade.update(paises)) {
+            System.out.println("Actualizado");
+
+        } else {
+            System.out.println(" no actualizado");
+        }
+
+    }
+
+    public void delete() {
+        paisesFacade.delete("siglas", "in");
+    }
+
+    /**
+     *
+     */
+    public void helpers() {
+        try {
+
+            ///
+            List<Continentes> l = continentesFacade.helpers("eq", "planetas.idplaneta", 1);
+
+            System.out.println("size() " + l.size());
+            for (Continentes p : l) {
+                System.out.println(" " + l.toString());
+            }
+        } catch (Exception e) {
+            System.out.println("helpers() " + e.getLocalizedMessage());
+        }
+    }
+
+    public void like() {
         List<Paises> l = paisesFacade.findlike("pais", "Ale");
 
-            System.out.println("paso 1");
-            System.out.println("size() "+l.size());
-for(Paises p:l){
-    System.out.println(" "+l.toString());
-}
+        System.out.println("paso 1");
+        System.out.println("size() " + l.size());
+        for (Paises p : l) {
+            System.out.println(" " + l.toString());
+        }
     }
-    public void fechas(){
-        try{
-          
-        Date date = new Date(1480582463992L);
-DateFormat df = new SimpleDateFormat("2017-01-16'T'03:45:17.209'Z'");
 
- //FECHSA
-        
-         
-        
-df.setTimeZone(TimeZone.getTimeZone("UTC"));
-String isoString = df.format(date);//2016-12-01T08:54:23.992Z
-System.out.println("paso 0" +isoString);
-List<Paises> l = paisesFacade.findBy("fecha", isoString);
+    public void fechas() {
+        try {
+
+            Date date = new Date(1480582463992L);
+            DateFormat df = new SimpleDateFormat("2017-01-16'T'03:45:17.209'Z'");
+
+            //FECHSA
+            df.setTimeZone(TimeZone.getTimeZone("UTC"));
+            String isoString = df.format(date);//2016-12-01T08:54:23.992Z
+            System.out.println("paso 0" + isoString);
+            List<Paises> l = paisesFacade.findBy("fecha", isoString);
             System.out.println("paso 1");
-            System.out.println("size() "+l.size());
-for(Paises p:l){
-    System.out.println(" "+l.toString());
-}
+            System.out.println("size() " + l.size());
+            for (Paises p : l) {
+                System.out.println(" " + l.toString());
+            }
         } catch (Exception e) {
             System.out.println("main() " + e.getLocalizedMessage());
         }
     }
-   
-    
-    public void eliminarColeccion(){
-        
-          if(facturasFacade.drop("facturas")){
-              System.out.println("se elimino facturas");
-          }else{
-              System.out.println("no se elimino la coleccion facturas "+facturasFacade.getException());
-             
-          }
+
+    public void eliminarColeccion() {
+
+        if (facturasFacade.drop("facturas")) {
+            System.out.println("se elimino facturas");
+        } else {
+            System.out.println("no se elimino la coleccion facturas " + facturasFacade.getException());
+
+        }
 //          if(facturasFacade.drop()){
 //              System.out.println("se elimino facturas");
 //          }else{
@@ -168,23 +213,25 @@ for(Paises p:l){
 //             
 //          }
     }
-    
-    public void createColeccion(){
-        
-        if(facturasFacade.createCollection("facturas")){
+
+    public void createColeccion() {
+
+        if (facturasFacade.createCollection("facturas")) {
             System.out.println("se creo la coleccion");
-        }else{
-            System.out.println("no se pudo crear la coleccion "+facturasFacade.getException());
+        } else {
+            System.out.println("no se pudo crear la coleccion " + facturasFacade.getException());
         }
     }
-    public void verificarSiexisteColeccion(){
-        
-        if(facturasFacade.existsCollection("continentes")){
+
+    public void verificarSiexisteColeccion() {
+
+        if (facturasFacade.existsCollection("continentes")) {
             System.out.println("Existe la coleccion");
-        }else{
+        } else {
             System.out.println("no existe la coleccion");
         }
     }
+
     public void verlistaColecciones() {
         try {
             List<String> list = facturasFacade.listCollecctions();
@@ -330,7 +377,7 @@ for(Paises p:l){
     private Planetas savePlanetasInteger() {
 
         try {
-            planetas = new Planetas(2, "Tierra", new Date());
+            planetas = new Planetas("2", "Tierra", new Date());
             if (planetasFacade.save(planetas)) {
                 System.out.println("guardado planeta");
             } else {

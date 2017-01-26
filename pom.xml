@@ -8,16 +8,11 @@
     <dependencies>
         
       
-      
+     
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>jmoordb</artifactId>
-            <version>0.1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>jmoordb</artifactId>
-            <version>0.1.5</version>
+            <version>0.1.7</version>
         </dependency>
     </dependencies>
     <properties>
