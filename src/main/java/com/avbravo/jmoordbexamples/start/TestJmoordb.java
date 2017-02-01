@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.TimeZone;
 import org.bson.Document;
 
@@ -78,21 +79,23 @@ public class TestJmoordb {
         //Entity
         planetas = new Planetas();
         planetas.setIdplaneta("tierra");
-        Planetas p1 = planetasFacade.find("idplaneta", "tierra");
+        Optional<Planetas> p1 = planetasFacade.find("idplaneta", "tierra");
 
-        if (p1 == null) {
+        if (!p1.isPresent()) {
             System.out.println("no hay planetas");
         } else {
-            System.out.println("el planeta es " + p1.toString());
+            planetas = p1.get();
+            System.out.println("el planeta es " + planetas.toString());
         }
 
         //Por documento
         Document doc = new Document("idplaneta", "tierra");
-        Planetas p2 = planetasFacade.find(doc);
+        Optional<Planetas> p2 = planetasFacade.find(doc);
 
-        if (p2 == null) {
+        if (!p2.isPresent()) {
             System.out.println("no hay planetas");
         } else {
+            planetas = p2.get();
             System.out.println("el planeta es " + p2.toString());
         }
     }
@@ -102,22 +105,24 @@ public class TestJmoordb {
         //Entity
         planetas = new Planetas();
         planetas.setIdplaneta("tierra");
-        Planetas p1 = planetasFacade.findById(planetas);
+        Optional<Planetas> p1 = planetasFacade.findById(planetas);
 
-        if (p1 == null) {
+        if (!p1.isPresent()) {
             System.out.println("no hay planetas");
         } else {
-            System.out.println("el planeta es " + p1.toString());
+            planetas = p1.get();
+            System.out.println("el planeta es " + planetas.toString());
         }
 
         //Por documento
         Document doc = new Document("idplaneta", "tierra");
-        Planetas p2 = planetasFacade.findById(doc);
+        Optional<Planetas> p2 = planetasFacade.findById(doc);
 
-        if (p2 == null) {
+        if (!p2.isPresent()) {
             System.out.println("no hay planetas");
         } else {
-            System.out.println("el planeta es " + p2.toString());
+            planetas =p2.get();
+            System.out.println("el planeta es " + planetas.toString());
         }
     }
 
@@ -295,12 +300,14 @@ public class TestJmoordb {
 
     public void buscarContinentesEmbebidos() {
         try {
-            List<Continentes> list = new ArrayList<>();
-            Continentes c = continentesFacade.find(new Document("planetas.idplaneta", "marte"));
-            if (c == null) {
+           // List<Continentes> list = new ArrayList<>();
+           Continentes continentes = new Continentes();
+            Optional<Continentes> c = continentesFacade.find(new Document("planetas.idplaneta", "marte"));
+            if (c.isPresent()) {
                 System.out.println("no existe");
             } else {
-                System.out.println("" + c.toString());
+                continentes =c.get();
+                System.out.println("" + continentes.toString());
             }
         } catch (Exception e) {
             System.out.println("buscarContinentesEmbebidos() " + e.getLocalizedMessage());

@@ -26,24 +26,6 @@ public class Paises {
     private Date fecha;
     @Embedded
      private Continentes continentes;
-
-//    public String getSiglas() {
-//        return siglas;
-//    }
-//
-//    public void setSiglas(String siglas) {
-//        this.siglas = siglas;
-//    }
-//
-//    public String getPais() {
-//        return pais;
-//    }
-//
-//    public void setPais(String pais) {
-//        this.pais = pais;
-//    }
-//    
-
     @Override
     public String toString() {
         return "Paises{" + "siglas=" + siglas + ", pais=" + pais + ", fecha=" + fecha + ", continentes=" + continentes + '}';
