@@ -121,7 +121,7 @@ public class TestJmoordb {
         if (!p2.isPresent()) {
             System.out.println("no hay planetas");
         } else {
-            planetas =p2.get();
+            planetas = p2.get();
             System.out.println("el planeta es " + planetas.toString());
         }
     }
@@ -137,15 +137,21 @@ public class TestJmoordb {
             System.out.println("no se guardo " + planetasFacade.getException());
         }
     }
-
+/**
+ * 
+ */
     public void update() {
-        paises = paisesFacade.find("siglas", "al");
-        paises.setPais("Alemania X");
-        if (paisesFacade.update(paises)) {
-            System.out.println("Actualizado");
+        Optional<Paises> p = paisesFacade.find("siglas", "al");
+        if (p.isPresent()) {
 
-        } else {
-            System.out.println(" no actualizado");
+            paises = p.get();
+            paises.setPais("Alemania X");
+            if (paisesFacade.update(paises)) {
+                System.out.println("Actualizado");
+
+            } else {
+                System.out.println(" no actualizado");
+            }
         }
 
     }
@@ -300,13 +306,13 @@ public class TestJmoordb {
 
     public void buscarContinentesEmbebidos() {
         try {
-           // List<Continentes> list = new ArrayList<>();
-           Continentes continentes = new Continentes();
+            // List<Continentes> list = new ArrayList<>();
+            Continentes continentes = new Continentes();
             Optional<Continentes> c = continentesFacade.find(new Document("planetas.idplaneta", "marte"));
             if (c.isPresent()) {
                 System.out.println("no existe");
             } else {
-                continentes =c.get();
+                continentes = c.get();
                 System.out.println("" + continentes.toString());
             }
         } catch (Exception e) {
@@ -336,11 +342,12 @@ public class TestJmoordb {
     }
 
     private void buscarPaises() {
-        Planetas p1 = planetasFacade.find("idplaneta", "tierra");
-        if (p1 == null) {
+        Optional<Planetas> p1 = planetasFacade.find("idplaneta", "tierra");
+        if (!p1.isPresent()) {
             System.out.println("No hay un planeta con ese codigo");
         } else {
-            System.out.println("" + p1.toString());
+            planetas = p1.get();
+            System.out.println("" + paises.toString());
         }
 
     }
@@ -348,11 +355,12 @@ public class TestJmoordb {
     private void buscarContinentes() {
 
 //        Continentes c = continentesFacade.find("idcontinente", "oc");
-        Continentes c = continentesFacade.find(new Document("idcontinente", "oc"));
-        if (c == null) {
+        Optional<Continentes> c = continentesFacade.find(new Document("idcontinente", "oc"));
+        if (!c.isPresent()) {
             System.out.println("No hay un continente con ese codigo");
         } else {
-            System.out.println("" + c.toString());
+            continentes = c.get();
+            System.out.println("" + continentes.toString());
 //                for(Planetas p:c.getPlanetas()){
 //                    System.out.println("<-**El planeta es ** -> "+p.getPlaneta());
 //                }
@@ -431,11 +439,14 @@ public class TestJmoordb {
 
             continentes.setIdcontinente("am");
             continentes.setContinente("America");
-            Planetas p1 = planetasFacade.find("idplaneta", "marte");
+            Optional<Planetas> p1 = planetasFacade.find("idplaneta", "marte");
 //continentes.setPlanetas(p1);
             //Planetas p2 = planetasFacade.find("idplaneta", "tierra");
             List<Planetas> l = new ArrayList<>();
-            l.add(p1);
+            if (p1.isPresent()) {
+                l.add(p1.get());
+            }
+
             // l.add(p2);
             continentes.setPlanetas(l);
 
