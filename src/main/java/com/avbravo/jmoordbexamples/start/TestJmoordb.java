@@ -42,8 +42,10 @@ public class TestJmoordb {
 
     public void ejecutar() {
         try {
-
-            buscar();
+            findAllContinentes();
+//savePlanetasInteger();
+//saveContinentes();
+          //  buscar();
             //    update();
 //            delete();
             // eliminarColeccion();
@@ -71,6 +73,19 @@ public class TestJmoordb {
 //}
         } catch (Exception e) {
             System.out.println("main() " + e.getLocalizedMessage());
+        }
+    }
+    
+    public void findAllContinentes(){
+        try {
+            List<Continentes> list = continentesFacade.findAll();
+            if(!list.isEmpty()){
+                for(Continentes c:list){
+                    System.out.println(" "+c.toString());
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("findAllContientes() "+e.getLocalizedMessage());
         }
     }
 
@@ -392,13 +407,18 @@ public class TestJmoordb {
     private Planetas savePlanetasInteger() {
 
         try {
-            planetas = new Planetas("2", "Tierra", new Date());
+            planetas = new Planetas("1", "Tierra", new Date());
             if (planetasFacade.save(planetas)) {
                 System.out.println("guardado planeta");
             } else {
                 System.out.println("no se guardo el planeta " + planetasFacade.getException());
             }
-
+planetas = new Planetas("2", "Marte", new Date());
+if (planetasFacade.save(planetas)) {
+                System.out.println("guardado planeta");
+            } else {
+                System.out.println("no se guardo el planeta " + planetasFacade.getException());
+            }
             //   System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
             System.out.println("savePlanetas() " + e.getLocalizedMessage());
@@ -439,12 +459,16 @@ public class TestJmoordb {
 
             continentes.setIdcontinente("am");
             continentes.setContinente("America");
-            Optional<Planetas> p1 = planetasFacade.find("idplaneta", "marte");
+            Optional<Planetas> p1 = planetasFacade.find("idplaneta", "1");
+            Optional<Planetas> p2 = planetasFacade.find("idplaneta", "2");
 //continentes.setPlanetas(p1);
             //Planetas p2 = planetasFacade.find("idplaneta", "tierra");
             List<Planetas> l = new ArrayList<>();
             if (p1.isPresent()) {
                 l.add(p1.get());
+            }
+            if (p2.isPresent()) {
+                l.add(p2.get());
             }
 
             // l.add(p2);
