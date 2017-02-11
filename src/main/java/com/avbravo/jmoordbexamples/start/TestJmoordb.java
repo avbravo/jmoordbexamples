@@ -42,7 +42,7 @@ public class TestJmoordb {
 
     public void ejecutar() {
         try {
-            findAllContinentes();
+         findAllContinentes();
 //savePlanetasInteger();
 //saveContinentes();
           //  buscar();
@@ -459,8 +459,8 @@ if (planetasFacade.save(planetas)) {
 
             continentes.setIdcontinente("am");
             continentes.setContinente("America");
-            Optional<Planetas> p1 = planetasFacade.find("idplaneta", "1");
-            Optional<Planetas> p2 = planetasFacade.find("idplaneta", "2");
+            Optional<Planetas> p1 = planetasFacade.find("idplaneta", "tierra");
+            Optional<Planetas> p2 = planetasFacade.find("idplaneta", "marte");
 //continentes.setPlanetas(p1);
             //Planetas p2 = planetasFacade.find("idplaneta", "tierra");
             List<Planetas> l = new ArrayList<>();
@@ -472,7 +472,7 @@ if (planetasFacade.save(planetas)) {
             }
 
             // l.add(p2);
-            continentes.setPlanetas(l);
+        //    continentes.setPlanetas(l);
 
 //
 //            List<String> list = new ArrayList<>();
@@ -482,8 +482,8 @@ if (planetasFacade.save(planetas)) {
 //            list.add("Los Santos");
 //            continentes.setCiudades(list);
 //        
-//        continentes.setPlanetas(planetas);
-//            continentes.setPlanetas(l);
+      //continentes.setPlanetas(p1.get());
+          continentes.setPlanetas(l);
             if (continentesFacade.save(continentes)) {
 
                 System.out.println("guardado continente");

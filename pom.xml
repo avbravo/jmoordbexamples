@@ -6,10 +6,11 @@
     <version>0.1.9</version>
     <packaging>jar</packaging>
     <dependencies>
+        
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>jmoordb</artifactId>
-            <version>0.1.9.4</version>
+            <version>0.1.9.5</version>
         </dependency>
     </dependencies>
     <properties>

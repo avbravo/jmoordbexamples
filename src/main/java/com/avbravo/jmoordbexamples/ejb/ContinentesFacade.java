@@ -6,11 +6,10 @@
 package com.avbravo.jmoordbexamples.ejb;
 
 
-import com.avbravo.jmoordb.facade.AbstractFacade;
+import com.avbravo.jmoordb.mongodb.facade.AbstractFacade;
 import com.avbravo.jmoordbexamples.entity.Continentes;
 import com.avbravo.jmoordbexamples.provider.MongoClientProvider;
 import com.mongodb.MongoClient;
-import org.bson.Document;
 
 /**
  *
@@ -30,12 +29,12 @@ MongoClientProvider mongoclientProvider = new MongoClientProvider();
 
     @Override
     public Object findById(String key, String value) {
-       return find(key, value);
+       return search(key, value);
     }
 
     @Override
     public Object findById(String key, Integer value) {
-     return find(key, value); 
+     return search(key, value); 
     }
 
    

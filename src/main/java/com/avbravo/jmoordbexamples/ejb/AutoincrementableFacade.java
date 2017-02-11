@@ -5,14 +5,11 @@
  */
 package com.avbravo.jmoordbexamples.ejb;
 
-import com.avbravo.jmoordb.facade.AbstractFacade;
+import com.avbravo.jmoordb.mongodb.facade.AbstractFacade;
 import com.avbravo.jmoordbexamples.entity.Autoincrementable;
 import com.avbravo.jmoordbexamples.provider.MongoClientProvider;
 
 import com.mongodb.MongoClient;
-import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
-import java.util.Arrays;
 
 /**
  *
