@@ -23,8 +23,9 @@ public class Continentes {
     @Id
     private String idcontinente;
     private String continente;
-@Referenced(documment = "Planetas",field = "idplaneta",javatype = "String",facade = "com.avbravo.jmoordbexamples.ejb.PlanetasFacade",lazy = false)
-    private List<Planetas> planetas;
+@Referenced(documment = "Planetas",field = "idplaneta",javatype = "String",
+        facade = "com.avbravo.jmoordbexamples.ejb.PlanetasFacade",lazy = false)
+    private Planetas planetas;
 
     @Override
     public String toString() {

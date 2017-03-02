@@ -34,6 +34,30 @@ public class Planetas {
         this.fecha = fecha;
     }
 
+    public String getIdplaneta() {
+        return idplaneta;
+    }
+
+    public void setIdplaneta(String idplaneta) {
+        this.idplaneta = idplaneta;
+    }
+
+    public String getPlaneta() {
+        return planeta;
+    }
+
+    public void setPlaneta(String planeta) {
+        this.planeta = planeta;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     
    
 

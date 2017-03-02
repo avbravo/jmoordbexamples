@@ -5,20 +5,24 @@
  */
 package com.avbravo.jmoordbexamples.start;
 
+import com.avbravo.jmoordb.JmoordbException;
 import com.avbravo.jmoordbexamples.ejb.AutoincrementableFacade;
 import com.avbravo.jmoordbexamples.ejb.ContinentesFacade;
 import com.avbravo.jmoordbexamples.ejb.FacturasFacade;
 import com.avbravo.jmoordbexamples.ejb.PaisesFacade;
 import com.avbravo.jmoordbexamples.ejb.PlanetasFacade;
+import com.avbravo.jmoordbexamples.ejb.TipovehiculoFacade;
+import com.avbravo.jmoordbexamples.ejb.VehiculosFacade;
 import com.avbravo.jmoordbexamples.entity.Autoincrementable;
 import com.avbravo.jmoordbexamples.entity.Continentes;
 import com.avbravo.jmoordbexamples.entity.Facturas;
 import com.avbravo.jmoordbexamples.entity.Paises;
 import com.avbravo.jmoordbexamples.entity.Planetas;
+import com.avbravo.jmoordbexamples.entity.Tipovehiculo;
+import com.avbravo.jmoordbexamples.entity.Vehiculos;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -39,10 +43,38 @@ public class TestJmoordb {
     Continentes continentes = new Continentes();
     Planetas planetas = new Planetas();
     Paises paises = new Paises();
-
+    VehiculosFacade vehiculosFacade = new VehiculosFacade();
+TipovehiculoFacade tipovehiculoFacade = new TipovehiculoFacade();
     public void ejecutar() {
         try {
-         findAllContinentes();
+            
+          Tipovehiculo tipovehiculo = new Tipovehiculo();
+       
+        tipovehiculo.setIdtipovehiculo("sedan");
+        Optional<Tipovehiculo> p1 = tipovehiculoFacade.find("idtipovehiculo", 
+                "sedan");
+
+        if (!p1.isPresent()) {
+            System.out.println("no hay tipovehiculo");
+        } else {
+           tipovehiculo = p1.get();
+            System.out.println("el tipovehiculo es " + tipovehiculo.toString());
+        }
+        
+        Vehiculos vehiculos = new Vehiculos();
+        vehiculos.setMarca("lamborllini");
+        vehiculos.setPlaca("15");
+        vehiculos.setTipovehiculo(tipovehiculo);
+        vehiculosFacade.save(vehiculos);
+        
+            System.out.println("===>> guardado");
+            List<Vehiculos> list = vehiculosFacade.findAll();
+            for(Vehiculos v:list){
+                System.out.println("---> "+v.toString());
+            }
+  //       savePlanetas();
+  //buscarContinentes();
+        // findAllContinentes();
 //savePlanetasInteger();
 //saveContinentes();
           //  buscar();
@@ -119,7 +151,9 @@ public class TestJmoordb {
 
         //Entity
         planetas = new Planetas();
+      
         planetas.setIdplaneta("tierra");
+        
         Optional<Planetas> p1 = planetasFacade.findById(planetas);
 
         if (!p1.isPresent()) {
@@ -141,8 +175,8 @@ public class TestJmoordb {
         }
     }
 
-    public void saveDocumento() {
-        Document doc = new Document("idplaneta", 3)
+    public void savePlanetas() {
+        Document doc = new Document("idplaneta","jupiter")
                 .append("planeta", "Jupiter")
                 .append("fecha", new Date());
 
@@ -370,7 +404,8 @@ public class TestJmoordb {
     private void buscarContinentes() {
 
 //        Continentes c = continentesFacade.find("idcontinente", "oc");
-        Optional<Continentes> c = continentesFacade.find(new Document("idcontinente", "oc"));
+        Optional<Continentes> c = continentesFacade.find(
+                new Document("idcontinente", "am"));
         if (!c.isPresent()) {
             System.out.println("No hay un continente con ese codigo");
         } else {
@@ -459,17 +494,18 @@ if (planetasFacade.save(planetas)) {
 
             continentes.setIdcontinente("am");
             continentes.setContinente("America");
-            Optional<Planetas> p1 = planetasFacade.find("idplaneta", "tierra");
-            Optional<Planetas> p2 = planetasFacade.find("idplaneta", "marte");
+            System.out.println("paso 0");
+            Optional<Planetas> p1 = planetasFacade.find("idplaneta", "jupiter");
+         //   Optional<Planetas> p2 = planetasFacade.find("idplaneta", "marte");
 //continentes.setPlanetas(p1);
             //Planetas p2 = planetasFacade.find("idplaneta", "tierra");
-            List<Planetas> l = new ArrayList<>();
-            if (p1.isPresent()) {
-                l.add(p1.get());
-            }
-            if (p2.isPresent()) {
-                l.add(p2.get());
-            }
+//            List<Planetas> l = new ArrayList<>();
+//            if (p1.isPresent()) {
+//                l.add(p1.get());
+//            }
+//            if (p2.isPresent()) {
+//                l.add(p2.get());
+//            }
 
             // l.add(p2);
         //    continentes.setPlanetas(l);
@@ -482,8 +518,15 @@ if (planetasFacade.save(planetas)) {
 //            list.add("Los Santos");
 //            continentes.setCiudades(list);
 //        
-      //continentes.setPlanetas(p1.get());
-          continentes.setPlanetas(l);
+System.out.println("paso 1");      
+if (p1.isPresent()) {
+continentes.setPlanetas(p1.get());
+           }else{
+    System.out.println("no hay planetas con ese id");
+}
+
+            System.out.println("paso 2");
+         // continentes.setPlanetas(l);
             if (continentesFacade.save(continentes)) {
 
                 System.out.println("guardado continente");
@@ -493,6 +536,8 @@ if (planetasFacade.save(planetas)) {
             }
             //   System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
+            JmoordbException je = new JmoordbException();
+            je.getMsg();
             System.out.println("Error() " + e.getLocalizedMessage());
         }
         return false;
