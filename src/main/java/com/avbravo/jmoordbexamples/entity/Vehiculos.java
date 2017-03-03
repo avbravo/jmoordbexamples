@@ -24,29 +24,29 @@ public class Vehiculos {
     private String placa;
 
     private String marca;
-//    private String modelo;
-//    private String motor;
-//    private String chasis;
-//    private String anio;
-//    private String color;
-//    private String capacidad;
-//    private String combustible;
-//    private String uso;
-//    private String aseguradora;
-//    private String poliza;
-//    private String descripcion;
-//    private Date fechacompra;
-//    private String tiempogarantia;
-//    private Integer kmgarantia;
-////    @Embedded
-////    private Clientes clientes;
-//    private Integer kmrecorrido;
-//
-//    private Date fechaultimomantenimiento;
-//
-//    private Integer kmproximomantenimiento;
-//
-//    private Date fechaproximomantenimiento;
+    private String modelo;
+    private String motor;
+    private String chasis;
+    private String anio;
+    private String color;
+    private String capacidad;
+    private String combustible;
+    private String uso;
+    private String aseguradora;
+    private String poliza;
+    private String descripcion;
+    private Date fechacompra;
+    private String tiempogarantia;
+    private Integer kmgarantia;
+//    @Embedded
+//    private Clientes clientes;
+    private Integer kmrecorrido;
+
+    private Date fechaultimomantenimiento;
+
+    private Integer kmproximomantenimiento;
+
+    private Date fechaproximomantenimiento;
     
     @Referenced(documment = "Tipovehiculo", 
            field = "idtipovehiculo", javatype = "String", lazy = false,
@@ -76,9 +76,14 @@ public class Vehiculos {
 //        return "Vehiculos{" + "placa=" + placa + ", marca=" + marca + '}';
 //    }
 
+//    @Override
+//    public String toString() {
+//        return "Vehiculos{" + "placa=" + placa + ", marca=" + marca + ", tipovehiculo=" + tipovehiculo + '}';
+//    }
+
     @Override
     public String toString() {
-        return "Vehiculos{" + "placa=" + placa + ", marca=" + marca + ", tipovehiculo=" + tipovehiculo + '}';
+        return "Vehiculos{" + "placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", motor=" + motor + ", chasis=" + chasis + ", anio=" + anio + ", color=" + color + ", capacidad=" + capacidad + ", combustible=" + combustible + ", uso=" + uso + ", aseguradora=" + aseguradora + ", poliza=" + poliza + ", descripcion=" + descripcion + ", fechacompra=" + fechacompra + ", tiempogarantia=" + tiempogarantia + ", kmgarantia=" + kmgarantia + ", kmrecorrido=" + kmrecorrido + ", fechaultimomantenimiento=" + fechaultimomantenimiento + ", kmproximomantenimiento=" + kmproximomantenimiento + ", fechaproximomantenimiento=" + fechaproximomantenimiento + ", tipovehiculo=" + tipovehiculo + '}';
     }
 
     

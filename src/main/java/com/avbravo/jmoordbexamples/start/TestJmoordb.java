@@ -61,11 +61,11 @@ TipovehiculoFacade tipovehiculoFacade = new TipovehiculoFacade();
             System.out.println("el tipovehiculo es " + tipovehiculo.toString());
         }
         
-        Vehiculos vehiculos = new Vehiculos();
-        vehiculos.setMarca("lamborllini");
-        vehiculos.setPlaca("15");
-        vehiculos.setTipovehiculo(tipovehiculo);
-        vehiculosFacade.save(vehiculos);
+//        Vehiculos vehiculos = new Vehiculos();
+//        vehiculos.setMarca("lamborllini");
+//        vehiculos.setPlaca("15");
+//        vehiculos.setTipovehiculo(tipovehiculo);
+//        vehiculosFacade.save(vehiculos);
         
             System.out.println("===>> guardado");
             List<Vehiculos> list = vehiculosFacade.findAll();
@@ -537,7 +537,7 @@ continentes.setPlanetas(p1.get());
             //   System.out.println("--->toString() "+ paisesFacade.getDocument(paises).toString());
         } catch (Exception e) {
             JmoordbException je = new JmoordbException();
-            je.getMsg();
+        //    je.getMsg();
             System.out.println("Error() " + e.getLocalizedMessage());
         }
         return false;
