@@ -7,6 +7,7 @@ package com.avbravo.jmoordbexamples.start;
 
 import com.avbravo.jmoordb.JmoordbException;
 import com.avbravo.jmoordbexamples.ejb.AutoincrementableFacade;
+import com.avbravo.jmoordbexamples.ejb.BahiaFacade;
 import com.avbravo.jmoordbexamples.ejb.ContinentesFacade;
 import com.avbravo.jmoordbexamples.ejb.FacturasFacade;
 import com.avbravo.jmoordbexamples.ejb.PaisesFacade;
@@ -14,15 +15,15 @@ import com.avbravo.jmoordbexamples.ejb.PlanetasFacade;
 import com.avbravo.jmoordbexamples.ejb.TipovehiculoFacade;
 import com.avbravo.jmoordbexamples.ejb.VehiculosFacade;
 import com.avbravo.jmoordbexamples.entity.Autoincrementable;
+import com.avbravo.jmoordbexamples.entity.Bahia;
 import com.avbravo.jmoordbexamples.entity.Continentes;
 import com.avbravo.jmoordbexamples.entity.Facturas;
 import com.avbravo.jmoordbexamples.entity.Paises;
 import com.avbravo.jmoordbexamples.entity.Planetas;
-import com.avbravo.jmoordbexamples.entity.Tipovehiculo;
-import com.avbravo.jmoordbexamples.entity.Vehiculos;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -45,21 +46,30 @@ public class TestJmoordb {
     Paises paises = new Paises();
     VehiculosFacade vehiculosFacade = new VehiculosFacade();
 TipovehiculoFacade tipovehiculoFacade = new TipovehiculoFacade();
+
+BahiaFacade bahiaFacade = new BahiaFacade();
     public void ejecutar() {
         try {
             
-          Tipovehiculo tipovehiculo = new Tipovehiculo();
-       
-        tipovehiculo.setIdtipovehiculo("sedan");
-        Optional<Tipovehiculo> p1 = tipovehiculoFacade.find("idtipovehiculo", 
-                "sedan");
-
-        if (!p1.isPresent()) {
-            System.out.println("no hay tipovehiculo");
-        } else {
-           tipovehiculo = p1.get();
-            System.out.println("el tipovehiculo es " + tipovehiculo.toString());
+        List<Bahia> list = new ArrayList<>();
+        list =bahiaFacade.findAll();
+        for(Bahia b:list){
+            System.out.println("bahia== "+b.toString());
         }
+        
+            
+//          Tipovehiculo tipovehiculo = new Tipovehiculo();
+//       
+//        tipovehiculo.setIdtipovehiculo("sedan");
+//        Optional<Tipovehiculo> p1 = tipovehiculoFacade.find("idtipovehiculo", 
+//                "sedan");
+//
+//        if (!p1.isPresent()) {
+//            System.out.println("no hay tipovehiculo");
+//        } else {
+//           tipovehiculo = p1.get();
+//            System.out.println("el tipovehiculo es " + tipovehiculo.toString());
+//        }
         
 //        Vehiculos vehiculos = new Vehiculos();
 //        vehiculos.setMarca("lamborllini");
@@ -67,11 +77,11 @@ TipovehiculoFacade tipovehiculoFacade = new TipovehiculoFacade();
 //        vehiculos.setTipovehiculo(tipovehiculo);
 //        vehiculosFacade.save(vehiculos);
         
-            System.out.println("===>> guardado");
-            List<Vehiculos> list = vehiculosFacade.findAll();
-            for(Vehiculos v:list){
-                System.out.println("---> "+v.toString());
-            }
+//            System.out.println("===>> guardado");
+//            List<Vehiculos> list = vehiculosFacade.findAll();
+//            for(Vehiculos v:list){
+//                System.out.println("---> "+v.toString());
+//            }
   //       savePlanetas();
   //buscarContinentes();
         // findAllContinentes();
